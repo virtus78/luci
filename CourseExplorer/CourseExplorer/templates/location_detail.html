@@ -1,0 +1,74 @@
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+          "DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+-->
+<head>
+<!--  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  #map_canvas { height: 100% }
+</style>-->
+
+<script type="text/javascript"
+    src="https://maps.google.com/maps/api/js?sensor=false">
+</script>
+
+<script type="text/javascript">
+  function initialize() {
+    var latlng = new google.maps.LatLng({{lat}},{{lang}});
+    var myOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+    
+    var marker = new google.maps.Marker({
+        position: latlng,
+        title:"{{location.title}}"
+    });
+    
+ 	// To add the marker to the map, call setMap();
+    marker.setMap(map);  
+  }
+
+</script>
+</head>
+
+<body onload="initialize()">
+
+<div id="breadcrumb">
+{% if breadcrumb_list %}
+<ul id="breadcrumb">
+{% for bcrumb in breadcrumb_list %}
+
+<li><a href="{{bcrumb.url}}">{{bcrumb.title}}</a></li>
+</ul>
+</ul>
+{% endfor %}
+{% else %}
+	<p>no navigation info </p>
+{% endif %}
+</div>
+
+{% if location %}
+    <table> 
+    <tr><td>Location Title: </td><td>{{location.title}}</td></tr>
+    <tr><td>Address: </td><td>{{location.address}}</td></tr>
+    <tr><td>Postcode: </td><td>{{location.postcode}}</td></tr>
+    <tr><td>Email: </td><td>{{location.email}}</td></tr>
+    <tr><td>Phone: </td><td>{{location.phone}}</td></tr>
+    <tr><td>Fax: </td><td>{{location.fax}}</td></tr>
+    <tr><td>Same As: </td><td><a href="http://data.ordnancesurvey.co.uk/doc/postcodeunit/{{location.postcode|cut:" "|upper}}">{{location.ord_location}}</a></td></tr>
+    <tr><td>Map: </td><td></td></tr>
+    </table>
+<div id="map_canvas" style="width:50%; height:50%"></div>
+
+{% else %}
+    <p>No location is available.</p>
+{% endif %}
+
+</body>
+</html>

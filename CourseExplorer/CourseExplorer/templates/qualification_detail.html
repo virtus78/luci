@@ -1,0 +1,32 @@
+{% extends "base_detail.html" %} 
+
+{% block breadcrumb %}
+{% if breadcrumb_list %}
+<ul id="breadcrumb">
+{% for bcrumb in breadcrumb_list %}
+
+<li><a href="{{bcrumb.url}}">{{bcrumb.title}}</a></li>
+</ul>
+</ul>
+{% endfor %}
+{% else %}
+	<p>no navigation info </p>
+{% endif %}
+{% endblock %}
+
+{% block detail %} 
+{% if qualification %}
+    <table> 
+    <tr><td>Qualification Title: </td><td>{{qualification.title}}</td></tr>
+    <tr><td>Abbreviation: </td><td>{{qualification.abbr}}</td></tr>
+    <tr><td>Education Level: </td><td>{{qualification.educationlevel}}</td></tr>
+    <tr><td>Awarded By: </td><td>{{qualification.awardedby}}</td></tr>
+    <tr><td>Accredited By: </td><td>{{qualification.accreditedby}}</td></tr>
+    </td></tr> 
+    </table>
+
+{% else %}
+    <p>No qualification is available.</p>
+{% endif %}
+
+{% endblock %} 

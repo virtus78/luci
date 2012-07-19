@@ -1,0 +1,21 @@
+{% extends "base_side.html" %} 
+
+{% block title %}
+Campuses
+{% endblock %} 
+
+
+{% block list %} 
+  {% if campus_list %}
+    <ul>    
+    {% for campus in campus_list  %}
+    
+        <li><a href="/ce/campus/{{campus}}/" target="content">{{campus}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No campuses are available.</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,40 @@
+{% extends "base_detail.html" %} 
+
+{% block breadcrumb %}
+{% if breadcrumb_list %}
+<ul id="breadcrumb">
+{% for bcrumb in breadcrumb_list %}
+
+<li><a href="{{bcrumb.url}}">{{bcrumb.title}}</a></li>
+</ul>
+</ul>
+{% endfor %}
+{% else %}
+	<p>no navigation info </p>
+{% endif %}
+{% endblock %}
+
+{% block detail %} 
+{% if offering %}
+    <table> 
+    <tr><td>Presentation Title: </td><td>{{offering.title}}</td></tr>
+    <tr><td>Start: </td><td>{{offering.start}}</td></tr>
+    <tr><td>Attendance Mode: </td><td>{{offering.attendancemode}}</td></tr>
+    <tr><td>Attendance Pattern: </td><td>{{offering.attendancepattern}}</td></tr>
+    <tr><td>Duration: </td><td>{{offering.duration}}</td></tr>
+    <tr><td>Apply From: </td><td>{{offering.applyfrom}}</td></tr>
+    <tr><td>Apply Until: </td><td>{{offering.applyuntil}}</td></tr>
+    <tr><td>Url: </td><td>{{offering.url}}</td></tr>
+    <tr><td>Prerequisite: </td><td>{{offering.prerequisite}}</td></tr>
+    <tr><td>Location: </td><td><a href="/ce/location/{{ offering.location|cut:"http://luci.uwl.ac.uk/course_linkeddata/Location#" }}/">{{offering.location}}</a></td></tr>
+    <tr><td>Assessment: </td><td>{{offering.assessment}}</td></tr>
+    <tr><td>Study Mode: </td><td>{{offering.studymode}}</td></tr>
+    <tr><td>School: </td><td>{{offering.school}}</td></tr>
+    </td></tr> 
+    </table>
+
+{% else %}
+    <p>No presentations are available.</p>
+{% endif %}
+
+{% endblock %} 

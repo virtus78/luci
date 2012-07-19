@@ -1,0 +1,19 @@
+{% extends "base_side.html" %} 
+
+{% block title %}
+Schools
+{% endblock %} 
+
+{% block list %} 
+{% if school_list %}
+    <ul>    
+    {% for school in school_list  %}
+    
+        <li><a href="/ce/school/{{school}}/" target="content">{{school}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No schools are available.</p>
+{% endif %}
+
+{% endblock %} 

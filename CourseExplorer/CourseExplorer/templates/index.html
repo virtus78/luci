@@ -1,0 +1,19 @@
+{% extends "base_side.html" %}
+
+{% block title %}
+Courses
+{% endblock %} 
+
+
+{% block list %} 
+{% if course_list %}
+    <ul>    
+    {% for course in course_list %}
+    
+        <li><a href="/ce/course/{{ course.cid }}/" target="content">{{ course.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+{% endblock %} 

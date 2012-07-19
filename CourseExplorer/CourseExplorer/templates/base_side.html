@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link rel="stylesheet" href="/static/default.css" type="text/css" />
+{% block style %}{% endblock %}
+</head>
+<body>
+<div id="title" class="related">
+<h2>{% block title %}{% endblock %}</h2></div>
+
+<div id="side" class="reference internal">
+{% block list %}{% endblock %} 
+</div>
+
+</body>
+</html>

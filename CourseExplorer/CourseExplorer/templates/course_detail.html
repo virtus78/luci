@@ -1,0 +1,40 @@
+{% extends "base_detail.html" %}
+
+{% block breadcrumb %}
+{% if breadcrumb_list %}
+<ul id="breadcrumb">
+{% for bcrumb in breadcrumb_list %}
+
+<li><a href="{{bcrumb.url}}">{{bcrumb.title}}</a></li>
+</ul>
+</ul>
+{% endfor %}
+{% else %}
+	<p>no navigation info </p>
+{% endif %}
+{% endblock %}
+
+
+{% block detail %} 
+{% if course %}
+    <table> 
+    <tr><td>Course Title: </td><td>{{course.title}}</td></tr>
+    <tr><td>Abstract: </td><td>{{course.abstract}}</td></tr>
+    <tr><td>Subjects: </td><td>{{course.subjects}}</td></tr>
+    <tr><td>Qualification: </td><td><a href="/ce/qualification/{{ course.qualification|cut:"http://luci.uwl.ac.uk/course_linkeddata/Qualification#" }}/">{{course.qualification}}</td></tr>
+    <tr><td>Description: </td><td>{{course.description}}</td></tr>
+    <tr><td>Learning Outcome: </td><td>{{course.learningoutcome}}</td></tr>
+    <tr><td>Application Procedure: </td><td>{{course.application}}</td></tr>
+    <tr><td>Presentations: </td><td>
+    {% for offering in course.offerings %}
+    	<a href="/ce/presentation/{{ offering|cut:"http://luci.uwl.ac.uk/course_linkeddata/Presentation#" }}/">{{offering}}</a></BR>
+    {% endfor %}
+    </td></tr> 
+    </table>
+
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+
+
+{% endblock %} 
